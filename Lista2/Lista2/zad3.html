@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<title>HTML</title>
+		<style type="text/css">
+			body {
+				background-color:#ffaa00;
+				font-family: Arial;
+				color: #777777;
+			}
+			div {
+				border: dotted;
+				border-color: yellow;
+				padding: 50px;
+				margin-left: 13px;
+			}
+			span {
+				display: block;
+				margin: 50px;
+				background-color:white;
+			}
+			img {
+				display: inline;
+				border: double;
+				border-color: red;
+				padding: 10px;
+				margin-left: 70px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			Każdy element generuje w dokumencie prostokątny obszar zwany pudełkiem (ang. Box model). Pudełko składa się z:<br>
+Zawartości - "Content" (np. test, obrazek itd.)<br>
+Otaczających marginesów wewnętrznych - "Padding"<br>
+Obramowania - "Border"<br>
+Marginesów - "Margin"<br><br>
+
+Ostatnie trzy składniki są opcjonalne, tzn. mogą mieć wartość zero.<br>
+
+Obwód (zewnętrzny) każdego z czterech obszarów nazywamy krawędzią ("Edge"). Według CSS rozmiary elementu (własności width oraz 
+height) odnoszą się do samej zawartości ("Content") i nie wpływają na pozostałe obszary modelu pudełkowego ("Box model"), które 
+są tworzone na zewnątrz zawartości, ale wewnątrz pudełka. Natomiast tło elementu jest określone dla wszystkich z podanych powyżej
+ obszarów z wyjątkiem marginesów zewnętrznych, które zawsze są przezroczyste ("Transparent"). Zapamiętanie tych krótkich zasad 
+ pozwoli Ci uniknąć w przyszłości nieoczekiwanych problemów z wyświetlaniem elementów strony.
+		</div>
+		<span>
+			Tutaj jest jakiś span.
+		</span>
+		<img src="boxdim.png" alt="box model">
+	</body>
+</html>

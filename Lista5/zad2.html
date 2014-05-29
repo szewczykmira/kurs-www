@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Zad2</title>
+		<meta name="author" content="Mira">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            $('#formularz').validate( {
+            submitHandler:function(form) {
+                     SubmittingForm();
+            },
+            rules:{
+            Login:{
+            required: true,
+            minlength: 6
+            }
+            email: "email",
+            password: {
+            required: true,
+            minlength: 8,
+            }
+            rewritten-password: {
+            required: true,
+            equalTo: "#password",
+            }
+            }
+            messages: {
+            Login: {
+            minlength: jQuery.format("At least {0} characters required!")
+            }
+            }
+            }
+            }
+
+            });
+        </script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>Zad2</h1>
+			</header>
+            <form id="formularz">
+                <input type="text" id="Login" placeholder="Login" > <br />
+                <input type="password" id="password" name="password" placeholder="Password"> <br />
+                <input type="password" id="rewritten-password" placeholder="Rewrite your password"> <br/>
+                <input type="text" id="email" placeholder="E-mail"> <br/>
+                <input type="text" id="zip-code" placeholder="Zip code"> <br/>
+                <input type="submit" id="submit">
+            </form>
+		</div>
+	</body>
+</html>

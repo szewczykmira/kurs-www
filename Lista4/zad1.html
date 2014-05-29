@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Simple Form</title>
+    <script language="javascript" type="text/javascript">
+        function checkForm()
+        {
+            document.getElementById('message').innerHTML = '';
+            var errors = false;
+            if (!checkPesel("Pesel")) {
+                errors = true;
+                document.getElementById('message').innerHTML +='<b>Błędny pesel.</b> <br />';
+            }
+            if (!checkEmail("Email")) {
+                errors = true;
+                document.getElementById('message').innerHTML +='<b>Błędny email.</b> <br />';
+            }
+            if (!checkBirthDate("Data")) {
+                errors = true;
+                document.getElementById('message').innerHTML += '<b>Błędna data.</b> <br />';
+            }
+            if (!checkCS("Miasto")) {
+                errors = true;
+                document.getElementById('message').innerHTML += '<b>Puste pole.</b> <br />';
+            }
+// sprawdzenie poprawnosci formularza
+            if (errors) document.getElementById('message').innerHTML
+                +='<b>Błędy w formularzu</b>';
+            else document.getElementById('message').innerHTML
+                = '<b>Dane zapisane</b>';
+            return false;
+        }
+
+        function checkPesel(id) {
+            var pesel = document.getElementById(id).value;
+            // 11 znaków
+            if (pesel.length != 11)
+                return false;
+            var peselInt = new Array();
+            // te znaki to cyfry
+            for (i=0;i<11; i++)
+            {
+                peselInt[i] = parseInt(pesel.substring(i,i+1));
+                if (isNaN(peselInt[i]))
+                {
+                    return false;
+                }
+            }
+            // poprawna data
+            var year = 1900 + peselInt[0] * 10 + peselInt[1];
+            var month = (peselInt[2]%2)*10+peselInt[3];
+            var day = peselInt[4]*10+peselInt[5];
+            if (!isValidDate(year, month, day))
+                return false;
+            return true;
+        }
+
+        function isValidDate(year, month, day) {
+            var d = new Date(year, month-1, day);
+
+            return d.getFullYear() === year && d.getMonth() === month-1 && d.getDate() === day;
+        }
+
+        function checkEmail(id) {
+            var email = document.getElementById(id).value;
+            var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailRegex.test(email);
+        }
+
+        function checkBirthDate(id) {
+            var birthDate = document.getElementById(id).value;
+
+            var year = parseInt(birthDate.substring(0,4));
+            var month = parseInt(birthDate.substring(5,7));
+            var day = parseInt(birthDate.substring(8,10));
+            if (!isValidDate(year, month, day))
+                return false;
+            var birthDateFromPesel = getDateFromPesel("Pesel");
+            var birthDateStr = year * 10000 + month * 100 + day;
+            return birthDateFromPesel == birthDateStr;
+        }
+
+        function getDateFromPesel(id) {
+            var pesel = document.getElementById(id).value;
+            var birthDateFromPesel = parseInt('19' + pesel.substring(0,6));
+            return birthDateFromPesel;
+        }
+        function checkCS (idC) {
+            var city = document.getElementById(idC).value;
+            if (city == 0 || !(document.dane.Plec[0].checked || document.dane.Plec[1].checked))
+                return false;
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+<div id="message"></div>
+<form name="dane" action="#" onsubmit="return checkForm()">
+    <table>
+        <tr><td>PESEL</td>
+            <td><input type="text" name="Pesel" id="Pesel" /></td></tr>
+        <tr><td>E-mail</td>
+            <td><input type="text" name="Email" id="Email" /></td></tr>
+        <tr><td>Data urodzenia</td>
+            <td><input type="text" name="Data" id="Data" /></td></tr>
+        <tr><td>Miasto</td>
+            <td><select name="Miasto" id="Miasto">
+                <option value="0" selected="selected">---</option>
+                <option value="wroclaw">Wrocław</option>
+                <option value="krakow">Kraków</option>
+                <option value="poznan">Warszawa</option>
+            </select></td></tr>
+        <tr><td>Płeć</td>
+            <td><input type="radio" name="Plec" value="m" /> M
+                <input type="radio" name="Plec" value="k" /> K</td></tr>
+        <tr><td colspan="2"><input type="submit" value="Zapisz" /></td></tr>
+    </table>
+</form>
+</body>
+</html>

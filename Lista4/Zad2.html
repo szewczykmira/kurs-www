@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Zad2</title>
+		<meta name="author" content="Mira">
+		<script type="text/javascript" src="Zad2.js"></script>
+
+	</head>
+
+	<body onload="tableGenerator();">
+		<table id="tab"></table>
+<table id="tab2"></table>
+
+<script type="text/javascript">
+    function tableGenerator() {
+        var obj = createTable();
+        var data = [["ala", "kot"],["ma", "tam"]];
+        var target = "tab";
+        var options = {
+            border: 5,
+            padding: 5,
+            spacing: 3
+        }
+        obj.init(data,target,options);
+        obj.generate();
+
+        data = [[3,4,5,6,8,8,8,8,8,8,8],[3,6,5,8,8,8,8,8,8,8,8],[8,7,2,0,8,8,8,8,8,8,8]];
+        target = "tab2";
+        obj.init(data, target, options);
+        obj.generate();
+    }
+
+</script>
+	</body>
+</html>

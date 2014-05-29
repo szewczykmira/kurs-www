@@ -1,0 +1,19 @@
+body { background-color:#999999;
+font-family: Arial;
+font-size: 12pt;
+}
+div {border-color: #000000;
+border-style: groove;
+border-width:1px;
+width: 500px;
+margin: 10px;}
+.jeden {
+	position: relative; left: 75px; top: 54px;
+}
+.dwa {
+	position: absolute; right: 14%; top: 4%;
+}
+.trzy {
+	position: fixed; bottom: 14px; left: 17px;
+	background-color:white;
+}
